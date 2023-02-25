@@ -4,12 +4,26 @@ import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import { BuildOptions } from "./types/config";
 
 export function buildLoaders({ isDev }: BuildOptions): RuleSetRule[] {
+  const svgLoader: RuleSetRule = {
+    test: /\.svg$/,
+    use: ["@svgr/webpack"],
+  };
+
+  const fileLoader: RuleSetRule = {
+    test: /\.(png|jpe?g|gif|woff2|woff)$/i,
+    use: [
+      {
+        loader: "file-loader", //replace for asset module webpack, cause file loader deprecated
+      },
+    ],
+  };
+
   const typescriptLoader: RuleSetRule = {
     test: /\.tsx?$/,
     use: "ts-loader",
     exclude: /node_modules/,
   };
-  // 5 lesson for git
+
   const cssLoader: RuleSetRule = {
     test: /\.s[ac]ss$/i,
     use: [
@@ -32,5 +46,5 @@ export function buildLoaders({ isDev }: BuildOptions): RuleSetRule[] {
     ],
   };
 
-  return [typescriptLoader, cssLoader];
+  return [fileLoader, svgLoader, typescriptLoader, cssLoader];
 }
