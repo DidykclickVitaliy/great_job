@@ -1,0 +1,25 @@
+{
+  "template-component": {
+    "prefix": "tc",
+    "body": [
+      "import { FC } from \"react\";",
+      "",
+      "import { classNames } from \"shared/lib/classNames\";",
+      "",
+      "import cls from \"./$TM_FILENAME_BASE.module.scss\";",
+      "",
+      "interface $TM_FILENAME_BASE$Props {",
+      "  className?: string;",
+      "}",
+      "",
+      "export const $TM_FILENAME_BASE: FC<$TM_FILENAME_BASE$Props> = ({ className }) => {",
+      "  return (",
+      "    <div className={classNames(cls.$TM_FILENAME_BASE, {}, [className])}>",
+      "  $1  ",
+      "    </div>",
+      "  );",
+      "};"
+    ],
+    "description": "template-component"
+  }
+}
