@@ -12,7 +12,9 @@ export const AppRouter: FC = () => {
             key={path}
             path={path}
             element={
-              <Suspense fallback={<div>Loading...</div>}>{element}</Suspense>
+              <Suspense fallback={<div>Loading...</div>}>
+                <div className="page-wrapper">{element}</div>
+              </Suspense>
             }
           ></Route>
         ))}
