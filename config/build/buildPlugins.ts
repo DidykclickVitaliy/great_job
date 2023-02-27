@@ -22,6 +22,6 @@ export function buildPlugins(
     new webpack.DefinePlugin({
       __IS__DEV: JSON.stringify(isDev),
     }),
-    new webpack.HotModuleReplacementPlugin(),
+    // new webpack.HotModuleReplacementPlugin(), "hot: true" automatically applies HMR plugin
   ];
 }
