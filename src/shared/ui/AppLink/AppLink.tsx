@@ -8,7 +8,6 @@ import cls from "./AppLink.module.scss";
 export enum AppLinkVariant {
   PRIMARY = "primary",
   SECONDARY = "secondary",
-  Thir = "third",
 }
 
 interface AppLinkProps extends LinkProps {
@@ -17,21 +16,21 @@ interface AppLinkProps extends LinkProps {
 }
 
 export const AppLink: FC<AppLinkProps> = (props) => {
-  const {
-    to,
-    children,
-    className,
-    variant = AppLinkVariant.PRIMARY,
-    ...otherProps
-  } = props;
+    const {
+        to,
+        children,
+        className,
+        variant = AppLinkVariant.PRIMARY,
+        ...otherProps
+    } = props;
 
-  return (
-    <Link
-      to={to}
-      className={classNames(cls.AppLink, {}, [className, cls[variant]])}
-      {...otherProps}
-    >
-      {children}
-    </Link>
-  );
+    return (
+        <Link
+            to={to}
+            className={classNames(cls.AppLink, {}, [className, cls[variant]])}
+            {...otherProps}
+        >
+            {children}
+        </Link>
+    );
 };

@@ -11,20 +11,20 @@ interface NavbarProps {
 }
 
 export const Navbar: FC<NavbarProps> = ({ className }) => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
 
-  return (
-    <div className={classNames(cls.Navbar, {}, [className])}>
-      <div className={cls.links}>
-        <AppLink to="/" variant={AppLinkVariant.SECONDARY}>
-          {t("Main")}
-        </AppLink>
-        <AppLink to="/about" variant={AppLinkVariant.SECONDARY}>
-          {t("About")}
-        </AppLink>
-      </div>
-    </div>
-  );
+    return (
+        <div className={classNames(cls.Navbar, {}, [className])}>
+            <div className={cls.links}>
+                <AppLink to="/" variant={AppLinkVariant.SECONDARY}>
+                    {t("Main")}
+                </AppLink>
+                <AppLink to="/about" variant={AppLinkVariant.SECONDARY}>
+                    {t("About")}
+                </AppLink>
+            </div>
+        </div>
+    );
 };
 
-//16:36 12 les
+// 16:36 12 les
