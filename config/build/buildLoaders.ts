@@ -33,7 +33,8 @@ export function buildLoaders({ isDev }: BuildOptions): RuleSetRule[] {
         test: /\.(png|jpe?g|gif|woff2|woff)$/i,
         use: [
             {
-                loader: "file-loader", // replace for asset module webpack, cause file loader deprecated
+                loader: "file-loader",
+                // replace for asset module webpack, cause file loader deprecated
             },
         ],
     };
