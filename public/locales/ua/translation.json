@@ -2,5 +2,7 @@
   "Language": "English",
   "Main": "Основна",
   "About": "Про нас",
-  "PageNotFound": "Сторінка загубилася :c"
+  "PageNotFound": "Сторінка загубилася :c",
+  "Oooops... Something went wrong": "Ойоо... Щось пішло не так :c",
+  "Refresh page": "Оновити сторінку"
 }
