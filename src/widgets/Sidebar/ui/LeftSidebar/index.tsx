@@ -6,13 +6,13 @@ import { LangSwitcher } from "features/ui/LangSwitcher";
 import { classNames } from "shared/lib/classNames";
 import { Button } from "shared/ui/Button/Button";
 
-import cls from "./Sidebar.module.scss";
+import cls from "./LeftSidebar.module.scss";
 
-interface SidebarProps {
+interface LeftSidebarProps {
   className?: string;
 }
 
-export const Sidebar: FC<SidebarProps> = ({ className }) => {
+export const LeftSidebar: FC<LeftSidebarProps> = ({ className }) => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
     const { t } = useTranslation();
 
@@ -22,11 +22,17 @@ export const Sidebar: FC<SidebarProps> = ({ className }) => {
 
     return (
         <div
-            className={classNames(cls.Sidebar, { [cls.collapsed]: collapsed }, [
-                className,
-            ])}
+            data-testid="left-sidebar"
+            className={
+                classNames(cls.LeftSidebar, { [cls.collapsed]: collapsed }, [className])
+            }
         >
-            <Button onClick={onToggle}>{t("toggle")}</Button>
+            <Button
+                data-testid="sidebar-toggle"
+                onClick={onToggle}
+            >
+                {t("toggle")}
+            </Button>
             <div className={cls.switchers}>
                 <ThemeSwitcher />
                 <LangSwitcher className={cls.lang} />

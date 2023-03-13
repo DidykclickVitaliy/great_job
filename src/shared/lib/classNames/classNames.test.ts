@@ -23,7 +23,7 @@ describe("classNames", () => {
             .toBe(expected);
     });
 
-    test("with mod undefined", () => {
+    test("with undefined mod", () => {
         const expected = "someClass";
         expect(classNames("someClass", { hovered: undefined, scrollable: false }, []))
             .toBe(expected);
