@@ -12,13 +12,14 @@
     "allowJs": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "strictBindCallApply": true
   },
   "ts-node": {
     "compilerOptions": {
       "module": "CommonJS"
     }
   },
-  "include": ["src/**/*.tsx", "./config/jest/setupTests.ts"],
+  "include": ["src/**/*.tsx", "src/**/*.ts", "./config/jest/setupTests.ts"],
   "exclude": ["node_modules"]
 }
