@@ -4,10 +4,7 @@ import { classNames } from "shared/lib/classNames";
 
 import cls from "./Button.module.scss";
 
-export enum ButtonVariant {
-  CLEAR = "clear",
-  OUTLINED = "outlined"
-}
+export type ButtonVariant = "clear" | "outlined"
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;

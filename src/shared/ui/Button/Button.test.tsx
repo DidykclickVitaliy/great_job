@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { Button, ButtonVariant } from "./Button";
+import { Button } from "./Button";
 
 describe("Button", () => {
     test("to be in the document", () => {
@@ -10,7 +10,7 @@ describe("Button", () => {
     });
 
     test("with clear variant", () => {
-        render(<Button variant={ButtonVariant.CLEAR} />);
+        render(<Button variant="clear" />);
         const button = screen.getByRole("button");
 
         expect(button).toHaveClass("clear");

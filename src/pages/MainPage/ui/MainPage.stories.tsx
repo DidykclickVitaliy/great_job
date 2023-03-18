@@ -4,7 +4,6 @@ import {
     ErrorBoundryDecorator,
 } from "shared/config/storybook/decorators/ErrorBoundryDecorator";
 import { ThemeDecorator } from "shared/config/storybook/decorators/ThemeDecorator";
-import { Theme } from "shared/lib/theme/ThemeContext";
 import MainPage from "./MainPage";
 
 export default {
@@ -25,4 +24,4 @@ Normal.args = {
 export const Dark = Template.bind({});
 Dark.args = {
 };
-Dark.decorators = [ThemeDecorator(Theme.DARK)];
+Dark.decorators = [ThemeDecorator("dark")];

@@ -2,7 +2,7 @@ import { FC } from "react";
 import { useTranslation } from "react-i18next";
 
 import { classNames } from "shared/lib/classNames";
-import { AppLink, AppLinkVariant } from "shared/ui/AppLink/AppLink";
+import { AppLink } from "shared/ui/AppLink/AppLink";
 
 import cls from "./Navbar.module.scss";
 
@@ -16,10 +16,10 @@ export const Navbar: FC<NavbarProps> = ({ className }) => {
     return (
         <div className={classNames(cls.Navbar, {}, [className])}>
             <div className={cls.links}>
-                <AppLink to="/" variant={AppLinkVariant.SECONDARY}>
+                <AppLink to="/" variant="secondary">
                     {t("Main")}
                 </AppLink>
-                <AppLink to="/about" variant={AppLinkVariant.SECONDARY}>
+                <AppLink to="/about" variant="secondary">
                     {t("About")}
                 </AppLink>
             </div>

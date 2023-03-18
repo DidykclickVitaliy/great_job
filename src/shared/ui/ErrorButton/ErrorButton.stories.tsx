@@ -4,7 +4,6 @@ import {
     ErrorBoundryDecorator,
 } from "shared/config/storybook/decorators/ErrorBoundryDecorator";
 import { ThemeDecorator } from "shared/config/storybook/decorators/ThemeDecorator";
-import { Theme } from "shared/lib/theme/ThemeContext";
 import { ErrorButton } from "./ErrorButton";
 
 export default {
@@ -27,4 +26,4 @@ export const PrimaryDark = Template.bind({});
 PrimaryDark.args = {
     children: "Link",
 };
-PrimaryDark.decorators = [ThemeDecorator(Theme.DARK)];
+PrimaryDark.decorators = [ThemeDecorator("dark")];

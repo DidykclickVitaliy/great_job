@@ -1,7 +1,6 @@
 import { addDecorator } from "@storybook/react";
 
 import { ThemeDecorator } from "../../src/shared/config/storybook/decorators/ThemeDecorator";
-import { Theme } from "../../src/shared/lib/theme/ThemeContext";
 
 export const parameters = {
     actions: { argTypesRegex: "^on[A-Z].*" },
@@ -13,4 +12,4 @@ export const parameters = {
     },
 };
 
-addDecorator(ThemeDecorator(Theme.LIGHT));
+addDecorator(ThemeDecorator("light"));
