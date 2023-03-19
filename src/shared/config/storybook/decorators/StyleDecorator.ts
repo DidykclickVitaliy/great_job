@@ -1,4 +1,5 @@
-import "app/styles/index.scss";
-import { Story } from "@storybook/react";
+import { PartialStoryFn } from "@storybook/addons";
 
-export const StyleDecorator = (story: () => Story) => story();
+import "app/styles/index.scss";
+
+export const StyleDecorator = () => (story: () => PartialStoryFn) => story();

@@ -18,7 +18,7 @@ export default ({ config }: {config: Configuration}) => {
     configResolve.extensions?.push(".tsx", ".ts", ".js");
     configResolve.modules?.push(paths.src);
 
-    configModule.rules = config.module?.rules?.map((rule: RuleSetRule | "...") => {
+    configModule.rules = configModule.rules?.map((rule: RuleSetRule | "...") => {
         const findDefaultSvgLoader = rule !== "..." && rule.test instanceof RegExp
          && rule.test.toString().includes("svg");
 

@@ -12,7 +12,7 @@ export default {
     argTypes: {
         backgroundColor: { control: "color" },
     },
-    decorators: [(story: Story) => ErrorBoundryDecorator(story)],
+    decorators: [ErrorBoundryDecorator()],
 } as ComponentMeta<typeof ErrorButton>;
 
 const Template: ComponentStory<typeof ErrorButton> = (args) => <ErrorButton {...args} />;
