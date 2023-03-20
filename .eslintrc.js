@@ -19,23 +19,25 @@ module.exports = {
             jsx: true,
         },
     },
-    plugins: [
-        "react",
-        "@typescript-eslint",
-        "i18next",
-    ],
+    plugins: ["react", "@typescript-eslint", "i18next"],
     rules: {
         indent: [2, 4],
         quotes: ["error", "double"],
         "react/jsx-indent": [2, 4],
         "react/jsx-indent-props": [2, 4],
-        "i18next/no-literal-string": ["error", {
-            markupOnly: true,
-            ignoreAttribute: ["to"],
-        }],
+        "i18next/no-literal-string": [
+            "error",
+            {
+                markupOnly: true,
+                ignoreAttribute: ["to", "data-testid", "variant", "size"],
+            },
+        ],
         "linebreak-style": ["error", "windows"],
         "max-len": ["error", { code: 95, comments: 150 }],
-        "react/jsx-filename-extension": ["warn", { extensions: [".js", ".jsx", ".tsx"] }],
+        "react/jsx-filename-extension": [
+            "warn",
+            { extensions: [".js", ".jsx", ".tsx"] },
+        ],
         "no-unused-vars": "warn",
         "react/jsx-props-no-spreading": "warn",
         "no-unneeded-ternary": "warn",
@@ -52,4 +54,12 @@ module.exports = {
     globals: {
         __IS_DEV__: true,
     },
+    overrides: [
+        {
+            files: ["**src/**/*.test.{ts,tsx}"],
+            rules: {
+                "i18next/no-literal-string": "off",
+            },
+        },
+    ],
 };
