@@ -3,10 +3,10 @@ run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on:
   push:
     branches:
-      - "ci"
+      - "dev"
   pull_request:
     branches: 
-      - "dev"
+      - "master"
 jobs:
   pipeline:
     strategy:
@@ -32,7 +32,7 @@ jobs:
         run: npm run test:unit
       # - name: story build
       #   run: npm run storybook:build
-      # - name: loki test ui
+      # - name: screenshot testing
       #   run: npm run test:ui:ci
     
  

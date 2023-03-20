@@ -1,11 +1,11 @@
 import { fireEvent, screen } from "@testing-library/react";
 
-import { renderWithTranslations } from "shared/lib/tests/renderWithTranslations";
+import { renderWithRouter } from "shared/lib/tests/renderWithRouter";
 import { LeftSidebar } from ".";
 
 describe("LeftSidebar", () => {
     test("to be in the document", () => {
-        renderWithTranslations(<LeftSidebar />);
+        renderWithRouter(<LeftSidebar />);
 
         const sidebar = screen.getByTestId("left-sidebar");
 
@@ -13,7 +13,7 @@ describe("LeftSidebar", () => {
     });
 
     test("clicked 2 times on toggle", () => {
-        renderWithTranslations(<LeftSidebar />);
+        renderWithRouter(<LeftSidebar />);
 
         const sidebar = screen.getByTestId("left-sidebar");
         const toggle = screen.getByTestId("sidebar-toggle");

@@ -6,9 +6,10 @@ import { Button } from "shared/ui/Button/Button";
 
 interface LangSwitcherProps {
   className?: string;
+  short?: boolean
 }
 
-export const LangSwitcher: FC<LangSwitcherProps> = ({ className }) => {
+export const LangSwitcher: FC<LangSwitcherProps> = ({ className, short }) => {
     const { t, i18n } = useTranslation();
 
     const toggleLanguage = async () => {
@@ -21,7 +22,7 @@ export const LangSwitcher: FC<LangSwitcherProps> = ({ className }) => {
             variant="clear"
             onClick={toggleLanguage}
         >
-            {t("Language")}
+            {t(short ? "ShortLanguage" : "Language")}
         </Button>
     );
 };

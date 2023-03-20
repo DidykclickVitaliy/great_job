@@ -1,4 +1,5 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { RouterDecorator } from "shared/config/storybook/decorators/RouterDecorator";
 
 import { ThemeDecorator } from "shared/config/storybook/decorators/ThemeDecorator";
 import { LeftSidebar } from ".";
@@ -9,6 +10,7 @@ export default {
     argTypes: {
         backgroundColor: { control: "color" },
     },
+    decorators: [RouterDecorator()],
 } as ComponentMeta<typeof LeftSidebar>;
 
 const Template: ComponentStory<typeof LeftSidebar> = (args) => <LeftSidebar {...args} />;

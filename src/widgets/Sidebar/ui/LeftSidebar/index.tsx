@@ -6,6 +6,11 @@ import { LangSwitcher } from "features/ui/LangSwitcher";
 import { classNames } from "shared/lib/classNames";
 import { Button } from "shared/ui/Button/Button";
 
+import { AppLink } from "shared/ui/AppLink/AppLink";
+import { RoutePath } from "app/providers/router/config/routeConfig";
+
+import HomeIcon from "shared/assets/icons/home.svg";
+import AboutIcon from "shared/assets/icons/about.svg";
 import cls from "./LeftSidebar.module.scss";
 
 interface LeftSidebarProps {
@@ -28,14 +33,36 @@ export const LeftSidebar: FC<LeftSidebarProps> = ({ className }) => {
             }
         >
             <Button
+                className={cls.toggleButton}
                 data-testid="sidebar-toggle"
                 onClick={onToggle}
+                variant="backgroundInverted"
+                size="size_xl"
+                square
             >
-                {t("toggle")}
+                {collapsed ? ">" : "<"}
             </Button>
+            <div className={cls.items}>
+                <AppLink className={cls.item} to={RoutePath.main} variant="secondary">
+                    <HomeIcon className={cls.icon} />
+                    <span className={cls.link}>
+                        {t("Main")}
+                    </span>
+                </AppLink>
+
+                <AppLink className={cls.item} to={RoutePath.about} variant="secondary">
+                    <AboutIcon className={cls.icon} />
+                    <span className={cls.link}>
+                        {t("About")}
+                    </span>
+                </AppLink>
+            </div>
             <div className={cls.switchers}>
                 <ThemeSwitcher />
-                <LangSwitcher className={cls.lang} />
+                <LangSwitcher
+                    className={cls.lang}
+                    short={collapsed}
+                />
             </div>
         </div>
     );
