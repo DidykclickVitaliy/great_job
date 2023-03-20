@@ -1,28 +1,11 @@
 import type { RuleSetRule } from "webpack";
-import MiniCssExtractPlugin from "mini-css-extract-plugin";
 
 import { BuildOptions } from "./types/config";
+import { buildCssLoader } from "./loaders/buildCssLoader";
+import { buildBabelLoader } from "./loaders/buildBabelLoader";
 
 export function buildLoaders({ isDev }: BuildOptions): RuleSetRule[] {
-    const babelLoader: RuleSetRule = {
-        test: /\.(js|jsx|tsx)$/,
-        exclude: /node_modules/,
-        use: {
-            loader: "babel-loader",
-            options: {
-                presets: ["@babel/preset-env"],
-                plugins: [
-                    [
-                        "i18next-extract",
-                        {
-                            locales: ["ua", "en"],
-                            keyAsDefaultValue: true,
-                        },
-                    ],
-                ],
-            },
-        },
-    };
+    const babelLoader: RuleSetRule = buildBabelLoader();
 
     const svgLoader: RuleSetRule = {
         test: /\.svg$/,
@@ -45,27 +28,7 @@ export function buildLoaders({ isDev }: BuildOptions): RuleSetRule[] {
         exclude: /node_modules/,
     };
 
-    const cssLoader: RuleSetRule = {
-        test: /\.s[ac]ss$/i,
-        use: [
-            // Creates "style" node from JS strings
-            isDev ? "style-loader" : MiniCssExtractPlugin.loader,
-            // Translates CSS into CommonJS
-            {
-                loader: "css-loader",
-                options: {
-                    modules: {
-                        auto: (resourcePath: string) => resourcePath.includes(".module."),
-                        localIdentName: isDev
-                            ? "[path][name]__[local]--[hash:base64:4]"
-                            : "[hash:base64:4]",
-                    },
-                },
-            },
-            // Compiles Sass to CSS
-            "sass-loader",
-        ],
-    };
+    const cssLoader: RuleSetRule = buildCssLoader(isDev);
 
     return [fileLoader, svgLoader, babelLoader, typescriptLoader, cssLoader];
 }

@@ -1,0 +1,67 @@
+.LeftSidebar {
+    position: relative;
+    height: calc(100vh - var(--navbar-height));
+    width: var(--sidebar-width);
+    background: var(--inverted-bg-color);
+    transition: width 0.3s linear;
+}
+
+.toggleButton {
+    position: absolute;
+    right: -32px;
+    bottom: 24px;
+}
+
+.items {
+    margin-top: 20px;
+    margin-left: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.item {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    fill: var(--inverted-secondary-color);
+}
+
+.link {
+    margin-left: 10px;
+    opacity: 1;
+    transition: opacity 0.5s linear;
+}
+
+.switchers {
+    width: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    bottom: 20px;
+}
+
+.lang {
+    margin-left: 20px;
+}
+
+.collapsed {
+    width: var(--sidebar-width-collapsed);
+
+    .switchers {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .lang {
+        margin-left: 0;
+    }
+
+    .link {
+        width: 0;
+        opacity: 0;
+        transition: opacity 0.3s linear;
+    }
+}

@@ -1,8 +1,7 @@
 import { FC } from "react";
 
 import { classNames } from "shared/lib/classNames";
-import { Button, ButtonVariant } from "shared/ui/Button/Button";
-import { Theme } from "shared/lib/theme/ThemeContext";
+import { Button } from "shared/ui/Button/Button";
 import { useTheme } from "shared/lib/theme/useTheme";
 
 import DarkThemeIcon from "../assets/icons/theme-dark.svg";
@@ -18,10 +17,10 @@ export const ThemeSwitcher: FC<ThemeSwitcherProps> = ({ className }) => {
     return (
         <Button
             className={classNames("", {}, [className])}
-            variant={ButtonVariant.CLEAR}
+            variant="clear"
             onClick={toggleTheme}
         >
-            {theme === Theme.DARK ? <DarkThemeIcon /> : <LightThemeIcon />}
+            {theme === "dark" ? <DarkThemeIcon /> : <LightThemeIcon />}
         </Button>
     );
 };

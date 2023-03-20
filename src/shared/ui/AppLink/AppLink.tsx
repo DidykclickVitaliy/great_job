@@ -5,10 +5,7 @@ import { classNames } from "../../lib/classNames";
 
 import cls from "./AppLink.module.scss";
 
-export enum AppLinkVariant {
-  PRIMARY = "primary",
-  SECONDARY = "secondary",
-}
+export type AppLinkVariant = "primary" | "secondary"
 
 interface AppLinkProps extends LinkProps {
   className?: string;
@@ -20,7 +17,7 @@ export const AppLink: FC<AppLinkProps> = (props) => {
         to,
         children,
         className,
-        variant = AppLinkVariant.PRIMARY,
+        variant = "primary",
         ...otherProps
     } = props;
 
