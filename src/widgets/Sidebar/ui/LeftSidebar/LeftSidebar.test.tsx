@@ -1,11 +1,11 @@
 import { fireEvent, screen } from "@testing-library/react";
 
-import { renderWithRouter } from "shared/lib/tests/renderWithRouter";
+import { componentRender } from "shared/lib/tests/componentRender";
 import { LeftSidebar } from ".";
 
 describe("LeftSidebar", () => {
     test("to be in the document", () => {
-        renderWithRouter(<LeftSidebar />);
+        componentRender(<LeftSidebar />);
 
         const sidebar = screen.getByTestId("left-sidebar");
 
@@ -13,7 +13,7 @@ describe("LeftSidebar", () => {
     });
 
     test("clicked 2 times on toggle", () => {
-        renderWithRouter(<LeftSidebar />);
+        componentRender(<LeftSidebar />);
 
         const sidebar = screen.getByTestId("left-sidebar");
         const toggle = screen.getByTestId("sidebar-toggle");
