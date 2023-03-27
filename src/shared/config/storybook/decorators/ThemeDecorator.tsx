@@ -6,7 +6,7 @@ import { Theme } from "shared/lib/theme/ThemeContext";
 import "app/styles/index.scss";
 
 export const ThemeDecorator = (theme: Theme) => (story: PartialStoryFn) => (
-    <ThemeProvider>
+    <ThemeProvider initialTheme={theme}>
         <div className={`app ${theme}`}>
             {story()}
         </div>

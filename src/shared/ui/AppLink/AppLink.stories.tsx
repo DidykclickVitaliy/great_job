@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta, Story } from "@storybook/react";
+import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import { RouterDecorator } from "shared/config/storybook/decorators/RouterDecorator";
 import { ThemeDecorator } from "shared/config/storybook/decorators/ThemeDecorator";
