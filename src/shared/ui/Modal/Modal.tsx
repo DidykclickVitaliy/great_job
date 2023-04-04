@@ -1,6 +1,5 @@
 import { FC, useEffect } from "react";
 
-import { useTheme } from "shared/lib/theme/useTheme";
 import { classNames } from "../../lib/classNames";
 import { Portal } from "../Portal/Portal";
 
@@ -16,7 +15,6 @@ export const Modal: FC<ModalProps> = (props) => {
     const {
         className, children, isOpen, onClose,
     } = props;
-    const { theme } = useTheme();
 
     useEffect(() => {
         const onKeyDown = (e: KeyboardEvent) => {
@@ -36,7 +34,6 @@ export const Modal: FC<ModalProps> = (props) => {
 
     const mods: Record<string, boolean> = {
         [cls.opened]: isOpen,
-        [cls[theme]]: true,
     };
 
     return (
