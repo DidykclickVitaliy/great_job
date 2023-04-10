@@ -9,7 +9,7 @@ const MainPage = () => {
     return (
         <>
             <ErrorButton />
-            <Counter />
+            {/* <Counter /> */}
             <div>
                 {t("Main page")}
             </div>

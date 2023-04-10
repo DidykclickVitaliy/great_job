@@ -1,13 +1,14 @@
 import { render } from "@testing-library/react";
 import { ReactNode } from "react";
 import { MemoryRouter } from "react-router-dom";
+import { DeepPartial } from "@reduxjs/toolkit";
 
 import { RootStateSchema, StoreProvider } from "app/providers/StoreProvider";
 import { renderWithTranslations } from "../renderWithTranslations";
 
 export interface renderWithRouterOptions {
     route?: string,
-    initialStore?: RootStateSchema
+    initialStore?: DeepPartial<RootStateSchema>
 }
 
 export const componentRender = (

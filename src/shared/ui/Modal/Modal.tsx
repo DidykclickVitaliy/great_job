@@ -1,4 +1,6 @@
-import { FC, useEffect } from "react";
+import {
+    FC, useCallback, useEffect, useRef, useState,
+} from "react";
 
 import { classNames } from "../../lib/classNames";
 import { Portal } from "../Portal/Portal";
@@ -11,15 +13,29 @@ interface ModalProps {
   onClose: () => void
 }
 
+const ANIMATION_TIMEOUT = 300;
+
 export const Modal: FC<ModalProps> = (props) => {
     const {
         className, children, isOpen, onClose,
     } = props;
 
+    const [isClosing, setIsClosing] = useState(false);
+    const timeoutRef = useRef(null);
+
+    const onCloseModal = useCallback(() => {
+        setIsClosing(true);
+
+        timeoutRef.current = setTimeout(() => {
+            setIsClosing(false);
+            onClose();
+        }, ANIMATION_TIMEOUT);
+    }, [onClose]);
+
     useEffect(() => {
         const onKeyDown = (e: KeyboardEvent) => {
             if (e.key === "Escape") {
-                onClose();
+                onCloseModal();
             }
         };
 
@@ -30,16 +46,21 @@ export const Modal: FC<ModalProps> = (props) => {
         return () => {
             window.removeEventListener("keydown", onKeyDown);
         };
-    }, [isOpen, onClose]);
+    }, [isOpen, onCloseModal]);
 
     const mods: Record<string, boolean> = {
         [cls.opened]: isOpen,
+        [cls.closing]: isClosing,
     };
+
+    if (!isOpen) {
+        return null;
+    }
 
     return (
         <Portal>
             <div className={classNames(cls.Modal, mods, [className])}>
-                <div className={cls.overlay} onClick={onClose}>
+                <div className={cls.overlay} onClick={onCloseModal}>
                     <div
                         className={cls.content}
                         onClick={(e) => e.stopPropagation()}
