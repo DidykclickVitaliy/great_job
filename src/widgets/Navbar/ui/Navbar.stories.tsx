@@ -1,6 +1,7 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import { RouterDecorator } from "shared/config/storybook/decorators/RouterDecorator";
+import { StoreDecorator } from "shared/config/storybook/decorators/StoreDecorator";
 import { ThemeDecorator } from "shared/config/storybook/decorators/ThemeDecorator";
 import { Navbar } from "./Navbar";
 
@@ -10,7 +11,16 @@ export default {
     argTypes: {
         backgroundColor: { control: "color" },
     },
-    decorators: [RouterDecorator()],
+    decorators: [
+        RouterDecorator(),
+        StoreDecorator(
+            {
+                login: {
+                    username: "admin",
+                    password: "123",
+                },
+            },
+        )],
 } as ComponentMeta<typeof Navbar>;
 
 const Template: ComponentStory<typeof Navbar> = (args) => <Navbar {...args} />;
