@@ -20,9 +20,9 @@ Primary.args = {
     isOpen: true,
 };
 
-export const SecondaryDark = Template.bind({});
-SecondaryDark.args = {
+export const Dark = Template.bind({});
+Dark.args = {
     children: "Lorem ipsum dolor sit amet",
     isOpen: true,
 };
-SecondaryDark.decorators = [ThemeDecorator("dark")];
+Dark.decorators = [ThemeDecorator("dark")];

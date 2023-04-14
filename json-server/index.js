@@ -16,18 +16,28 @@ server.use(async (req, res, next) => {
     next();
 });
 
+// server.use((req, res, next) => {
+//     if (!req.headers.authorization) {
+//         return res.status(403).json({ message: "AUTH ERROR" });
+//     }
+
+//     next();
+//     return null;
+// });
+
 server.post("/login", (req, res) => {
     try {
         const { username, password } = req.body;
         const db = JSON.parse(fs.readFileSync(path.resolve(__dirname, "db.json"), "UTF-8"));
         const { users = [] } = db;
 
-        const userFromBd = users.find(
+        const userFromDb = users.find(
             (user) => user.username === username && user.password === password,
         );
 
-        if (userFromBd) {
-            return res.json(userFromBd);
+        if (userFromDb) {
+            const { id, username } = userFromDb;
+            return res.json({ id, username });
         }
 
         return res.status(403).json({ message: "User not found" });
@@ -35,15 +45,6 @@ server.post("/login", (req, res) => {
         console.log(e);
         return res.status(500).json({ message: e.message });
     }
-});
-
-server.use((req, res, next) => {
-    if (!req.headers.authorization) {
-        return res.status(403).json({ message: "AUTH ERROR" });
-    }
-
-    next();
-    return null;
 });
 
 server.use(router);

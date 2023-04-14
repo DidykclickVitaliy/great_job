@@ -1,5 +1,5 @@
 import path from "path";
-import type { Configuration, ModuleOptions, RuleSetRule } from "webpack";
+import webpack, { Configuration, ModuleOptions, RuleSetRule } from "webpack";
 
 import { BuildPaths } from "../build/types/config";
 import { buildCssLoader } from "../build/loaders/buildCssLoader";
@@ -7,6 +7,7 @@ import { buildCssLoader } from "../build/loaders/buildCssLoader";
 export default ({ config }: {config: Configuration}) => {
     const configModule: ModuleOptions = config.module!;
     const configResolve = config.resolve!;
+    const configPlugins = config.plugins;
 
     const paths: BuildPaths = {
         entry: "",
@@ -16,7 +17,7 @@ export default ({ config }: {config: Configuration}) => {
     };
 
     configResolve.extensions?.push(".tsx", ".ts", ".js");
-    configResolve.modules?.push(paths.src);
+    configResolve.modules = [path.resolve(paths.src), "node_modules"];
 
     configModule.rules = configModule.rules?.map((rule: RuleSetRule | "...") => {
         const findDefaultSvgLoader = rule !== "..." && rule.test instanceof RegExp
@@ -33,6 +34,12 @@ export default ({ config }: {config: Configuration}) => {
         test: /\.svg$/,
         use: ["@svgr/webpack"],
     }, buildCssLoader(true));
+
+    configPlugins?.push(
+        new webpack.DefinePlugin({
+            __IS_DEV__: true,
+        }),
+    );
 
     return config;
 };

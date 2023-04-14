@@ -38,7 +38,7 @@ module.exports = {
             },
         ],
         "linebreak-style": ["error", "windows"],
-        "max-len": ["error", { code: 95, comments: 150 }],
+        "max-len": ["error", { code: 100, comments: 150 }],
         "react/jsx-filename-extension": [
             "warn",
             { extensions: [".js", ".jsx", ".tsx"] },

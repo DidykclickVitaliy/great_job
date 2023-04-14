@@ -1,5 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
+import { StoreDecorator } from "shared/config/storybook/decorators/StoreDecorator";
 import { ThemeDecorator } from "shared/config/storybook/decorators/ThemeDecorator";
 import { LoginModal } from "./LoginModal";
 
@@ -9,6 +10,14 @@ export default {
     argTypes: {
         backgroundColor: { control: "color" },
     },
+    decorators: [StoreDecorator(
+        {
+            login: {
+                username: "admin",
+                password: "123",
+            },
+        },
+    )],
 } as ComponentMeta<typeof LoginModal>;
 
 const Template: ComponentStory<typeof LoginModal> = (args) => <LoginModal {...args} />;

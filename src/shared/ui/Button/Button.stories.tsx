@@ -103,3 +103,12 @@ SquareSizeXL.args = {
     size: "size_xl",
     square: true,
 };
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+    children: ">",
+    variant: "backgroundInverted",
+    size: "size_xl",
+    square: true,
+    disabled: true,
+};
