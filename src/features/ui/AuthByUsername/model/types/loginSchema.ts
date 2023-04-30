@@ -5,7 +5,4 @@ export interface LoginSchema {
     error?: string
 }
 
-export type LoginByUserNameProps = {
-    username: string,
-    password: string,
-}
+export type LoginDetails = Pick<LoginSchema, "username" | "password">

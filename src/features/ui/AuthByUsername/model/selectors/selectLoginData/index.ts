@@ -1,3 +1,5 @@
 import { RootStateSchema } from "app/providers/StoreProvider";
 
-export const selectLoginData = (state: RootStateSchema) => state.login;
+export const selectLoginIsLoading = (state: RootStateSchema) => state.loginForm?.isLoading || false;
+
+export const selectLoginError = (state: RootStateSchema) => state.loginForm?.error || "";

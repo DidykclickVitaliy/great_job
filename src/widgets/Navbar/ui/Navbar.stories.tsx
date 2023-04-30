@@ -15,7 +15,7 @@ export default {
         RouterDecorator(),
         StoreDecorator(
             {
-                login: {
+                loginForm: {
                     username: "admin",
                     password: "123",
                 },

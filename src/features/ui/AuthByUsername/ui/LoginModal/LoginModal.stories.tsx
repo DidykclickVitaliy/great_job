@@ -12,7 +12,7 @@ export default {
     },
     decorators: [StoreDecorator(
         {
-            login: {
+            loginForm: {
                 username: "admin",
                 password: "123",
             },

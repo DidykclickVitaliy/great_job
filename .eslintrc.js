@@ -34,7 +34,7 @@ module.exports = {
             "error",
             {
                 markupOnly: true,
-                ignoreAttribute: ["to", "data-testid", "variant", "size"],
+                ignoreAttribute: ["to", "data-testid", "variant", "size", "schemaKey"],
             },
         ],
         "linebreak-style": ["error", "windows"],

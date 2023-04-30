@@ -1,80 +1,101 @@
-import { selectUser } from "entities/User";
-import { FC, memo, useCallback } from "react";
+import {
+    FC, memo, useCallback, useState,
+} from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 
+import { selectUser } from "entities/User";
 import { classNames } from "shared/lib/classNames";
 import { Button } from "shared/ui/Button/Button";
 import { Input } from "shared/ui/Input/Input";
 import { Text } from "shared/ui/Text/Text";
-import { selectLoginData } from "../../model/selectors/selectLoginData";
-import { loginByUserName } from "../../model/services/loginByUserName";
-import { loginActions } from "../../model/slice/loginSlice";
+import { DynamicModuleLoader, ReducersList } from "shared/lib/components/DynamicModuleLoader";
+import { selectLoginError, selectLoginIsLoading } from "../../model/selectors/selectLoginData";
+import { loginByUserDetails } from "../../model/services/loginByUserDetails";
+import { loginActions, loginReducer } from "../../model/slice/loginSlice";
 
 import cls from "./LoginForm.module.scss";
+import { LoginDetails } from "../../model/types/loginSchema";
 
 interface LoginFormProps {
   className?: string;
   onCloseModal?: () => void
 }
 
-export const LoginForm: FC<LoginFormProps> = memo((props: LoginFormProps) => {
+const initialReducers: ReducersList = {
+    loginForm: loginReducer,
+};
+
+const LoginForm: FC<LoginFormProps> = memo((props: LoginFormProps) => {
     const { className, onCloseModal } = props;
-    const { t } = useTranslation();
-    const dispacth = useDispatch();
-    const {
-        username, password, isLoading, error,
-    } = useSelector(selectLoginData);
+    const [username, setUserName] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
+    const isLoading = useSelector(selectLoginIsLoading);
+    const loginError = useSelector(selectLoginError);
     const { isAuth } = useSelector(selectUser);
+    const userDetails: LoginDetails = { username, password };
+
+    const dispacth = useDispatch();
+
+    const { t } = useTranslation();
 
     const onChangeUserName = useCallback((value: string) => {
-        dispacth(loginActions.setUserName(value));
+        setUserName(value);
     }, []);
 
     const onChangeUserPassword = useCallback((value: string) => {
-        dispacth(loginActions.setUserPassword(value));
+        setPassword(value);
     }, []);
 
     const onLogin = () => {
-        dispacth(loginByUserName({ username, password }));
+        dispacth(loginByUserDetails(userDetails));
+        dispacth(loginActions.setLoginDetails(userDetails));
 
-        if (isAuth) {
-            onCloseModal();
-        }
+        // if (isAuth) {
+        //     onCloseModal();
+        // }  modalka not closed
     };
 
     return (
-        <form className={classNames(cls.LoginForm, {}, [className])}>
-            <Text title={t("Authorization form")} />
+        <DynamicModuleLoader
+            reducers={initialReducers}
+            removeAfterUnmount
+        >
+            <form className={classNames(cls.LoginForm, {}, [className])}>
+                {/* custom shared Form component */}
+                <Text title={t("Authorization form")} />
 
-            {error && <Text text={error} variant="error" />}
-            {/* formik or react hook form */}
+                {loginError && <Text text={loginError} variant="error" />}
+                {/* formik or react hook form */}
 
-            <Input
-                autoFocus
-                className={cls.input}
-                type="text"
-                placeholder={t("Enter username")}
-                value={username}
-                onChange={onChangeUserName}
-            />
+                <Input
+                    autoFocus
+                    className={cls.input}
+                    type="text"
+                    placeholder={t("Enter username")}
+                    value={username}
+                    onChange={onChangeUserName}
+                />
 
-            <Input
-                className={cls.input}
-                type="text"
-                placeholder={t("Enter password")}
-                value={password}
-                onChange={onChangeUserPassword}
-            />
+                <Input
+                    className={cls.input}
+                    type="text"
+                    placeholder={t("Enter password")}
+                    value={password}
+                    onChange={onChangeUserPassword}
+                />
 
-            <Button
-                className={cls.loginBtn}
-                variant="outlined"
-                onClick={onLogin}
-                disabled={isLoading}
-            >
-                {t("Log in")}
-            </Button>
-        </form>
+                <Button
+                    className={cls.loginBtn}
+                    variant="outlined"
+                    onClick={onLogin}
+                    disabled={isLoading}
+                >
+                    {t("Log in")}
+                </Button>
+            </form>
+        </DynamicModuleLoader>
     );
 });
+
+export default LoginForm;
